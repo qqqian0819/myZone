@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="shortcut icon" href="./images/favicon.png">
+	<title>个人网站</title>
+	<style>
+		*{padding: 0; margin: 0}
+		/*home*/
+		header{
+			background-color: #999; 
+			position: relative;
+		}
+		/*info*/
+		main{
+			background-color: #8D8080
+		}
+		/*project*/
+		article{
+			background-color: #CBBBBB
+		}
+		/*contact*/
+		footer{
+			background-color: #eee
+		}
+		/*导航*/
+		nav{
+			display: flex;
+			background-color: #000;
+			position: fixed;
+			width: 100%;
+		}
+		/*小屏导航*/
+		#little-screen{
+			display: none;
+		}
+		/*小屏导航的总图标*/
+		#little-screen img{
+			width: 2em;
+			margin:0.4em 1em 0.2em;
+		}
+		/*导航下的每一个item*/
+		nav > p{
+			flex: 1; 
+			color: #999;
+			text-align: center;
+			padding: 1em 0 0.6em;
+		}
+		/*导航下的文字*/
+		nav span{ 
+			line-height: 2em;  
+			padding:0.2em 1em;
+			cursor: pointer;
+		}
+		/*鼠标移上去导航的样式*/
+		nav > p >span:hover{
+			border: 1px solid #999;
+			border-top: 0;
+			line-height: 1.8em;
+			box-shadow: 1px 1px 1px #ECE9E9;
+		}
+		/*点击后导航的样式*/
+		.onHover {
+			border: 1px solid #999;
+			border-top: 0;
+			line-height: 1.8em;
+		}
+		/*右侧导航圆圈系列*/
+		#header > ul{
+			height: 4em;
+			display: flex;
+			justify-content: space-around;
+			flex-direction: column;
+			top: 48%;
+			right: 1em;
+			position: fixed;
+			list-style: none;
+		}
+		/*右侧每一个小圆圈导航的样式*/
+		#header > li{
+			border-radius: 4px;
+			height: 8px;
+			width: 8px;
+			border: 1px solid #000;
+			background-color: #6C6262; 
+			cursor: pointer;
+		}
+		/*默认第一个小圆圈的样式*/
+		#header-li{
+			background-color: #fff;
+		}
+		
+		/*小屏*/
+		@media screen and (max-width: 680px) {
+			/*导航*/
+			nav {
+				flex-direction: column;
+				height: 50px;
+
+			}
+			/*导航下的每一个item*/
+			nav > p {
+				text-align: left; 
+				border-bottom: 1px solid #eee;
+				display: none;
+			}
+			/*小屏导航移上去的样式*/
+			nav > p >span:hover{
+				border-right: 1px solid #999;
+				border-bottom: 0; 
+				border-left: 0;
+				line-height: 2em;
+			}
+			/*小屏导航*/
+			#little-screen{
+				display: block;
+				cursor: pointer;
+				right: 1em;
+				color: #fff;
+				text-align: right;
+			}
+			/*小屏隐藏小圆圈导航*/
+			#header > ul{
+				display: none;
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- 首屏 -->
+	
+	<header id="header">
+		<nav>
+			<div id="little-screen"> <img src="./images/category.png" alt=""></div>
+			<p><span linkTo="header" class="links onHover" id="header-span">HOME</span></p>
+			<p><span linkTo="info"  class="links"  id="info-span">INFO</span></p>
+			<p><span linkTo="projects"  class="links"  id="projects-span">PROJECT</span></p>
+			<p><span linkTo="footer"  class="links"  id="footer-span">CONTACT</span></p>
+		</nav>
+		<ul>
+			<li linkTo="header"  class="links" id="header-li"></li>
+			<li linkTo="info"  class="links" id="info-li"></li>
+			<li linkTo="projects"  class="links" id="projects-li"></li>
+			<li linkTo="footer" class="links" id="footer-li"></li>
+		</ul>
+	</header>
+	<!-- 个人信息 -->
+	<main id="info"><h2>this is main about my skills</h2></main>
+	<!-- 项目 -->
+	<article id="projects"><h2>this is my project</h2></article>
+	<!-- 页脚 -->
+	<footer id="footer">this is footer</footer>
+	<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+	<script>
+		$(function(){
+			// 根据屏幕定义高度
+			$('header').css('height', $(window).height());
+			$('main').css('height', $(window).height() * 0.6);
+			$('article').css('height', $(window).height() * 0.8);
+			$('footer').css('height', '300px' );
+
+
+			//  点击导航或者右侧小圆圈锚点跳转
+			$('.links').on('click', function(){
+
+				// 导航样式切换
+				$(this).addClass("onHover");
+				$(this).parent().siblings('').children('span').removeClass('onHover');
+				
+				// 小圆圈样式切换
+				let links = '#' + $(this).attr('linkTo'); // 构造跳转锚点
+				$(links + '-li').css('background-color', '#fff');
+				$(links + '-li').siblings('li').css('background-color', '#000');
+				
+				// 锚点滚动到响应位置
+				var bodys = body || html; // 兼容 google body ; firfox html 
+				$(bodys).animate({scrollTop:($(links).offset().top-50)}, 1000, function(){
+				});
+			});
+
+			// 小屏的导航
+			$('#little-screen').on("click", function(){
+				$('nav>p').toggle("slow");
+			});
+
+			// 屏幕滚动锚点跳转
+			$(window).scroll(function () {
+				var header = document.getElementById("header").offsetTop;
+				var info = document.getElementById("info").offsetTop;
+				var projects = document.getElementById("projects").offsetTop;
+				var footer = document.getElementById("footer").offsetTop;
+				var top = $(window).scrollTop()-$(window).height()-60;
+				var bottom = $(window).scrollTop()+300;
+				
+				if( header > top && header < bottom ){
+					switchCircle('#header');
+				}
+
+				if( info > top && info < bottom ){
+					switchCircle('#info');
+				}
+				
+				if( projects > top && projects < bottom){	
+					switchCircle('#projects');
+
+				}
+				if($(window).scrollTop() > (footer*0.7 ) ){
+					switchCircle('#footer');
+				}
+				// 滚动 滚动条 切换样式
+				function switchCircle(item){
+					$( item +'-span').addClass("onHover");
+					$( item +'-span').parent().siblings('').children('span').removeClass('onHover');
+					$( item +'-li').css('background-color', '#fff');
+					$( item +'-li').siblings('li').css('background-color', '#000');
+				}
+
+				
+		
+		});
+		
+
+	});
+	</script>
+</body>
+</html>
