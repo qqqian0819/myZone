@@ -8,27 +8,21 @@
 	<style>
 		*{padding: 0; margin: 0}
 		/*home*/
-		header{
+		#header{
 			background-color: #999; 
 			position: relative;
 		}
-		/*info*/
-		main{
-			background-color: #8D8080
-		}
-		/*project*/
-		article{
-			background-color: #CBBBBB
-		}
-		/*contact*/
-		footer{
-			background-color: #eee
+
+		#welcome-world{
+			padding-top: 25%;
+			text-align: center;
 		}
 		/*导航*/
 		nav{
 			display: flex;
 			background-color: #000;
 			position: fixed;
+			z-index: 999;
 			width: 100%;
 		}
 		/*小屏导航*/
@@ -76,19 +70,77 @@
 			right: 1em;
 			position: fixed;
 			list-style: none;
+			z-index: 999;
 		}
 		/*右侧每一个小圆圈导航的样式*/
-		#header > li{
+		#header li{
 			border-radius: 4px;
 			height: 8px;
 			width: 8px;
 			border: 1px solid #000;
-			background-color: #6C6262; 
 			cursor: pointer;
+			background-color: #6C6262;
 		}
-		/*默认第一个小圆圈的样式*/
-		#header-li{
-			background-color: #fff;
+
+		/*info*/
+		#info{
+			background-color: #8D8080
+		}
+		/*project*/
+		#projects{
+			background-color: #CBBBBB;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			padding: 1em;
+		}
+		/*项目的字演示*/
+		#project-title{
+			font-size: 0em;
+			line-height: 3em;
+			opacity: 0;
+		}
+		/*点击更多*/
+		.view-more{
+			line-height: 3em;
+		}
+		/*每一行的项目*/
+		#project-row{
+			display: flex;
+			justify-content: space-around;
+			flex: 1;
+		}
+		/*每一个项目*/
+		.project-item{
+			border: 1px solid #f00;
+			margin: 1em;
+			display: flex;
+			left: -10em;
+			align-items: center;
+			flex: 1;
+			justify-content: center;
+			align-items: center;
+			opacity:0;
+		}
+		
+		@keyframes project-animate{
+			/*0% { opacity:0;}*/
+			100% {opacity:1;}
+		}
+
+		/*项目的描述*/
+		.description{
+			/*display: none;*/
+			border: 1px solid #eee;
+
+		}
+		/*鼠标移上去的样式*/
+		.project-item:hover{
+			background: rgba(0,0,0,0.2);
+		}
+		/*contact*/
+		#footer{
+			background-color: #eee
 		}
 		
 		/*小屏*/
@@ -144,21 +196,80 @@
 			<li linkTo="projects"  class="links" id="projects-li"></li>
 			<li linkTo="footer" class="links" id="footer-li"></li>
 		</ul>
+		
+		<div id="welcome-world">
+			
+		</div>
+
 	</header>
 	<!-- 个人信息 -->
-	<main id="info"><h2>this is main about my skills</h2></main>
+	<main id="info">
+		<h2>this is main about my skills</h2>
+	</main>
 	<!-- 项目 -->
-	<article id="projects"><h2>this is my project</h2></article>
+	<article id="projects">
+		<div id="project-title">this is my projects </div>
+		<div id="project-row">
+			<span class="project-item">
+				<div class="project-description">
+					<span class="project-name">this ge is bookstore</span> <br>
+					<span class="project-skill">php + mysql + bootstrap</span> <br>
+					<span class="project-links">进入</span>
+				</div>
+			</span>
+			<span class="project-item">this second</span>
+			<span class="project-item">this third</span>
+			<span class="project-item">this fourth</span>
+		</div>
+		<div class="view-more">
+			view more
+		</div>
+	</article>
 	<!-- 页脚 -->
 	<footer id="footer">this is footer</footer>
 	<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 	<script>
 		$(function(){
-			// 根据屏幕定义高度
-			$('header').css('height', $(window).height());
-			$('main').css('height', $(window).height() * 0.6);
-			$('article').css('height', $(window).height() * 0.8);
-			$('footer').css('height', '300px' );
+			// 页面初始样式
+			(function(){
+				$('#header').css('height', $(window).height());
+				$('#info').css('height', $(window).height() * 0.6);
+				$('#projects').css('height', $(window).height() * 0.8);
+				$('#footer').css('height', '300px' );
+				$('#header-li').css('background-color', '#fff');
+			})();
+			/**
+		    * @class    [打字类]
+		    * @tag      [obj]     文字需要显示的位置
+		    * @msg      [string]  具体的文字
+		    * @type     [string]  文字后面跟着打字的类型
+		    * @speed	[number]  打字的速度
+		    */
+		   	class Type {
+			   	constructor(tag, msg, type, speed){
+			   		this.tag = tag; 
+			   		this.msg = msg;
+			   		this.underline = type; 	
+			   		this.speed = speed;  
+			   		this.timer = null;    // 定时
+			   		this.index = '';	// 索引
+			   		
+			   	};
+			   	typeWord(){
+			   		this.timer = setTimeout(this.typeWord.bind(this), 200); // class的指向类的实例
+			   		this.tag.text(this.msg.substr(0, this.index) + this.underline);
+			   		if(this.index == this.msg.length-1){this.underline = ''};
+
+			   		if(this.inedx == this.msg.length){clearTimeout(this.timer)}
+			   		this.index ++;
+			   		// console.log(length);
+			   	}
+
+
+		   	}
+		   	var typing = new Type($('#welcome-world'), '嘿,故事和酒我都有,你要不要来', '_', '200');
+		   	typing.typeWord();
+			
 
 
 			//  点击导航或者右侧小圆圈锚点跳转
@@ -171,11 +282,11 @@
 				// 小圆圈样式切换
 				let links = '#' + $(this).attr('linkTo'); // 构造跳转锚点
 				$(links + '-li').css('background-color', '#fff');
-				$(links + '-li').siblings('li').css('background-color', '#000');
+				$(links + '-li').siblings('li').css('background-color', '#6C6262');
 				
 				// 锚点滚动到响应位置
-				var bodys = body || html; // 兼容 google body ; firfox html 
-				$(bodys).animate({scrollTop:($(links).offset().top-50)}, 1000, function(){
+				let bodys = $('body') || $('html'); // 兼容 google body ; firfox html 
+				bodys.animate({scrollTop:($(links).offset().top-50)}, 1000, function(){
 				});
 			});
 
@@ -184,14 +295,21 @@
 				$('nav>p').toggle("slow");
 			});
 
+			// 鼠标移到项目上的动作
+			$('.project-item').on('mouseover', function(){
+				$('.project-name').animate({
+					color: '#f00'
+				}, 1000)
+			});
+
 			// 屏幕滚动锚点跳转
 			$(window).scroll(function () {
-				var header = document.getElementById("header").offsetTop;
-				var info = document.getElementById("info").offsetTop;
-				var projects = document.getElementById("projects").offsetTop;
-				var footer = document.getElementById("footer").offsetTop;
-				var top = $(window).scrollTop()-$(window).height()-60;
-				var bottom = $(window).scrollTop()+300;
+				let header = document.getElementById("header").offsetTop;
+				let info = document.getElementById("info").offsetTop;
+				let projects = document.getElementById("projects").offsetTop;
+				let footer = document.getElementById("footer").offsetTop;
+				let top = $(window).scrollTop()-$(window).height()-60;
+				let bottom = $(window).scrollTop()+300;
 				
 				if( header > top && header < bottom ){
 					switchCircle('#header');
@@ -199,10 +317,17 @@
 
 				if( info > top && info < bottom ){
 					switchCircle('#info');
+					
 				}
 				
 				if( projects > top && projects < bottom){	
 					switchCircle('#projects');
+					// $(".project-item").show("slow");
+					// my projects 字样
+					$("#project-title").animate({'font-size': '1.5em', 'opacity':'1'}, 5000);
+					//  每一个项目整体的样式
+					$(".project-item").css('animation', 'project-animate 10s forwards ');
+					
 
 				}
 				if($(window).scrollTop() > (footer*0.7 ) ){
@@ -213,12 +338,11 @@
 					$( item +'-span').addClass("onHover");
 					$( item +'-span').parent().siblings('').children('span').removeClass('onHover');
 					$( item +'-li').css('background-color', '#fff');
-					$( item +'-li').siblings('li').css('background-color', '#000');
+					$( item +'-li').siblings('li').css('background-color', '#6C6262');
 				}
-
-				
 		
-		});
+			});
+			
 		
 
 	});
