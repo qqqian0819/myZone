@@ -1,0 +1,192 @@
+*{padding: 0; margin: 0}
+		/*home*/
+		#header{
+			/*background-color: #999; */
+			position: relative;
+			background-image: url('./images/bg2.jpg');
+			background-size: 100% 100%;
+		}
+
+		#welcome-world{
+			padding-top: 22%;
+			text-align: center;
+			color: #fff;
+			font-size: 2em;
+			letter-spacing: 0.3em;
+
+		}
+		/*导航*/
+		nav{
+			 background-image:  url('./images/bg2.jpg');
+			background-size: cover; 
+			display: flex;
+			position: fixed;
+			z-index: 999;
+			width: 100%;
+		}
+		/*小屏导航*/
+		#little-screen{
+			display: none;
+		}
+		/*小屏导航的总图标*/
+		#little-screen img{
+			width: 2em;
+			margin:0.4em 1em 0.2em;
+		}
+		/*导航下的每一个item*/
+		nav > p{
+			flex: 1; 
+			color: #999;
+			text-align: center;
+			padding: 1em 0 0.6em;
+		}
+		/*导航下的文字*/
+		nav span{ 
+			line-height: 2em;  
+			padding:0.2em 1em;
+			cursor: pointer;
+		}
+		/*鼠标移上去导航的样式*/
+		nav > p >span:hover{
+			border: 1px solid #999;
+			border-top: 0;
+			line-height: 1.8em;
+			box-shadow: 1px 1px 1px #ECE9E9;
+		}
+		/*点击后导航的样式*/
+		.onHover {
+			border: 1px solid #999;
+			border-top: 0;
+			line-height: 1.8em;
+		}
+		/*右侧导航圆圈系列*/
+		#header > ul{
+			height: 4em;
+			display: flex;
+			justify-content: space-around;
+			flex-direction: column;
+			top: 48%;
+			right: 1em;
+			position: fixed;
+			list-style: none;
+			z-index: 999;
+		}
+		/*右侧每一个小圆圈导航的样式*/
+		#header li{
+			border-radius: 4px;
+			height: 8px;
+			width: 8px;
+			border: 1px solid #000;
+			cursor: pointer;
+			background-color: #6C6262;
+		}
+
+		/*info*/
+		#info{
+			background-color: #8D8080
+		}
+		/*project*/
+		#projects{
+			background-color: #CBBBBB;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			padding: 1em;
+			
+		}
+		/*项目的字演示*/
+		#project-title{
+			font-size: 0em;
+			line-height: 3em;
+			opacity: 0;
+		}
+		/*每一行的项目*/
+		#project-row{
+			display: flex;
+			justify-content: space-around;
+			flex: 1;
+			
+		}
+		/*每一个项目*/
+		.project-item{
+			border: 1px solid #f00;
+			margin: 1em;
+			flex: 1;
+			display: flex;
+			position: relative;
+			justify-content: center;
+			/* align-items: center; 
+			align-items: center;*/
+
+			/*opacity:0;*/
+		}
+		
+		@keyframes project-animate{
+			/*0% { opacity:0;}*/
+			100% {opacity:1;}
+		}
+
+
+		/*项目的描述*/
+		.description{
+			/*display: none;*/
+			border: 1px solid #eee;
+
+		}
+		/*鼠标移上去的样式*/
+		.project-item:hover{
+			background: rgba(0,0,0,0.2);
+		}
+		/*contact*/
+		#footer{
+			background-color: #656464;
+			padding-top: 1em;
+			text-align: center;
+			color: #C5BFBF;
+			line-height: 2em;
+			padding: 1em;
+
+		}
+		#footer  a{
+			color: #C5BFBF;
+			text-decoration: none;
+
+		}
+		#footer a:hover{
+			color: #fff;
+		}
+		
+		/*小屏*/
+		@media screen and (max-width: 680px) {
+			/*导航*/
+			nav {
+				flex-direction: column;
+				height: 50px;
+
+			}
+			/*导航下的每一个item*/
+			nav > p {
+				text-align: left; 
+				border-bottom: 1px solid #eee;
+				display: none;
+			}
+			/*小屏导航移上去的样式*/
+			nav > p >span:hover{
+				border-right: 1px solid #999;
+				border-bottom: 0; 
+				border-left: 0;
+				line-height: 2em;
+			}
+			/*小屏导航*/
+			#little-screen{
+				display: block;
+				cursor: pointer;
+				right: 1em;
+				color: #fff;
+				text-align: right;
+			}
+			/*小屏隐藏小圆圈导航*/
+			#header > ul{
+				display: none;
+			}
+		}
