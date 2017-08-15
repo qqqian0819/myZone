@@ -5,183 +5,10 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 	<link rel="shortcut icon" href="./images/favicon.png">
 	<title>个人网站</title>
-	<style>
-		*{padding: 0; margin: 0}
-		/*home*/
-		#header{
-			background-color: #999; 
-			position: relative;
-		}
-
-		#welcome-world{
-			padding-top: 25%;
-			text-align: center;
-		}
-		/*导航*/
-		nav{
-			display: flex;
-			background-color: #000;
-			position: fixed;
-			z-index: 999;
-			width: 100%;
-		}
-		/*小屏导航*/
-		#little-screen{
-			display: none;
-		}
-		/*小屏导航的总图标*/
-		#little-screen img{
-			width: 2em;
-			margin:0.4em 1em 0.2em;
-		}
-		/*导航下的每一个item*/
-		nav > p{
-			flex: 1; 
-			color: #999;
-			text-align: center;
-			padding: 1em 0 0.6em;
-		}
-		/*导航下的文字*/
-		nav span{ 
-			line-height: 2em;  
-			padding:0.2em 1em;
-			cursor: pointer;
-		}
-		/*鼠标移上去导航的样式*/
-		nav > p >span:hover{
-			border: 1px solid #999;
-			border-top: 0;
-			line-height: 1.8em;
-			box-shadow: 1px 1px 1px #ECE9E9;
-		}
-		/*点击后导航的样式*/
-		.onHover {
-			border: 1px solid #999;
-			border-top: 0;
-			line-height: 1.8em;
-		}
-		/*右侧导航圆圈系列*/
-		#header > ul{
-			height: 4em;
-			display: flex;
-			justify-content: space-around;
-			flex-direction: column;
-			top: 48%;
-			right: 1em;
-			position: fixed;
-			list-style: none;
-			z-index: 999;
-		}
-		/*右侧每一个小圆圈导航的样式*/
-		#header li{
-			border-radius: 4px;
-			height: 8px;
-			width: 8px;
-			border: 1px solid #000;
-			cursor: pointer;
-			background-color: #6C6262;
-		}
-
-		/*info*/
-		#info{
-			background-color: #8D8080
-		}
-		/*project*/
-		#projects{
-			background-color: #CBBBBB;
-			text-align: center;
-			display: flex;
-			flex-direction: column;
-			padding: 1em;
-		}
-		/*项目的字演示*/
-		#project-title{
-			font-size: 0em;
-			line-height: 3em;
-			opacity: 0;
-		}
-		/*点击更多*/
-		.view-more{
-			line-height: 3em;
-		}
-		/*每一行的项目*/
-		#project-row{
-			display: flex;
-			justify-content: space-around;
-			flex: 1;
-		}
-		/*每一个项目*/
-		.project-item{
-			border: 1px solid #f00;
-			margin: 1em;
-			display: flex;
-			left: -10em;
-			align-items: center;
-			flex: 1;
-			justify-content: center;
-			align-items: center;
-			opacity:0;
-		}
-		
-		@keyframes project-animate{
-			/*0% { opacity:0;}*/
-			100% {opacity:1;}
-		}
-
-		/*项目的描述*/
-		.description{
-			/*display: none;*/
-			border: 1px solid #eee;
-
-		}
-		/*鼠标移上去的样式*/
-		.project-item:hover{
-			background: rgba(0,0,0,0.2);
-		}
-		/*contact*/
-		#footer{
-			background-color: #eee
-		}
-		
-		/*小屏*/
-		@media screen and (max-width: 680px) {
-			/*导航*/
-			nav {
-				flex-direction: column;
-				height: 50px;
-
-			}
-			/*导航下的每一个item*/
-			nav > p {
-				text-align: left; 
-				border-bottom: 1px solid #eee;
-				display: none;
-			}
-			/*小屏导航移上去的样式*/
-			nav > p >span:hover{
-				border-right: 1px solid #999;
-				border-bottom: 0; 
-				border-left: 0;
-				line-height: 2em;
-			}
-			/*小屏导航*/
-			#little-screen{
-				display: block;
-				cursor: pointer;
-				right: 1em;
-				color: #fff;
-				text-align: right;
-			}
-			/*小屏隐藏小圆圈导航*/
-			#header > ul{
-				display: none;
-			}
-		}
-	</style>
+	<link rel="stylesheet" href="./index.css">
 </head>
 <body>
 	<!-- 首屏 -->
-	
 	<header id="header">
 		<nav>
 			<div id="little-screen"> <img src="./images/category.png" alt=""></div>
@@ -204,11 +31,23 @@
 	</header>
 	<!-- 个人信息 -->
 	<main id="info">
-		<h2>this is main about my skills</h2>
+		<h2>this is  about my skills</h2>
 	</main>
 	<!-- 项目 -->
 	<article id="projects">
 		<div id="project-title">this is my projects </div>
+		<div id="project-row">
+			<span class="project-item">
+				<div class="project-description">
+					<span class="project-name">Bookstrore个人网上书店</span> <br>
+					<span class="project-skill">php + mysql + bootstrap</span> <br>
+					<span class="project-links">进入</span>
+				</div>
+			</span>
+			<span class="project-item">this second</span>
+			<span class="project-item">this third</span>
+			<span class="project-item">this fourth</span>
+		</div>
 		<div id="project-row">
 			<span class="project-item">
 				<div class="project-description">
@@ -221,131 +60,26 @@
 			<span class="project-item">this third</span>
 			<span class="project-item">this fourth</span>
 		</div>
-		<div class="view-more">
-			view more
-		</div>
+		
 	</article>
 	<!-- 页脚 -->
-	<footer id="footer">this is footer</footer>
+	<footer id="footer">
+		<p>qqqian0819 © 2018年8月</p>
+		<p>求职：前端  |  地点：不限</p>
+		<p>爱好：撸码 | 旅游 | 看书 | 乒乓球 | 台球 </p>
+		<!-- <p>性格：责任心 | 坚韧 | 乐观 | 开朗 | 随和 </p> -->
+		<p>
+			<a href="https://github.com/qqqian0819" target="_blank">GitHub:qqqian0819 </a>  | 
+			<a href="http://weibo.com/u/3314342403" target="_blank">新浪微博:一枚奋斗的girl</a> 
+			
+		</p>
+		<p>
+			Email: qqqian0819@Gmail.com / 245013296@qq.com  | 
+			QQ: 245013296 | 
+			Tel: 18983425884
+		</p>
+	</footer>
 	<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-	<script>
-		$(function(){
-			// 页面初始样式
-			(function(){
-				$('#header').css('height', $(window).height());
-				$('#info').css('height', $(window).height() * 0.6);
-				$('#projects').css('height', $(window).height() * 0.8);
-				$('#footer').css('height', '300px' );
-				$('#header-li').css('background-color', '#fff');
-			})();
-			/**
-		    * @class    [打字类]
-		    * @tag      [obj]     文字需要显示的位置
-		    * @msg      [string]  具体的文字
-		    * @type     [string]  文字后面跟着打字的类型
-		    * @speed	[number]  打字的速度
-		    */
-		   	class Type {
-			   	constructor(tag, msg, type, speed){
-			   		this.tag = tag; 
-			   		this.msg = msg;
-			   		this.underline = type; 	
-			   		this.speed = speed;  
-			   		this.timer = null;    // 定时
-			   		this.index = '';	// 索引
-			   		
-			   	};
-			   	typeWord(){
-			   		this.timer = setTimeout(this.typeWord.bind(this), 200); // class的指向类的实例
-			   		this.tag.text(this.msg.substr(0, this.index) + this.underline);
-			   		if(this.index == this.msg.length-1){this.underline = ''};
-
-			   		if(this.inedx == this.msg.length){clearTimeout(this.timer)}
-			   		this.index ++;
-			   		// console.log(length);
-			   	}
-
-
-		   	}
-		   	var typing = new Type($('#welcome-world'), '嘿,故事和酒我都有,你要不要来', '_', '200');
-		   	typing.typeWord();
-			
-
-
-			//  点击导航或者右侧小圆圈锚点跳转
-			$('.links').on('click', function(){
-
-				// 导航样式切换
-				$(this).addClass("onHover");
-				$(this).parent().siblings('').children('span').removeClass('onHover');
-				
-				// 小圆圈样式切换
-				let links = '#' + $(this).attr('linkTo'); // 构造跳转锚点
-				$(links + '-li').css('background-color', '#fff');
-				$(links + '-li').siblings('li').css('background-color', '#6C6262');
-				
-				// 锚点滚动到响应位置
-				let bodys = $('body') || $('html'); // 兼容 google body ; firfox html 
-				bodys.animate({scrollTop:($(links).offset().top-50)}, 1000, function(){
-				});
-			});
-
-			// 小屏的导航
-			$('#little-screen').on("click", function(){
-				$('nav>p').toggle("slow");
-			});
-
-			// 鼠标移到项目上的动作
-			$('.project-item').on('mouseover', function(){
-				$('.project-name').animate({
-					color: '#f00'
-				}, 1000)
-			});
-
-			// 屏幕滚动锚点跳转
-			$(window).scroll(function () {
-				let header = document.getElementById("header").offsetTop;
-				let info = document.getElementById("info").offsetTop;
-				let projects = document.getElementById("projects").offsetTop;
-				let footer = document.getElementById("footer").offsetTop;
-				let top = $(window).scrollTop()-$(window).height()-60;
-				let bottom = $(window).scrollTop()+300;
-				
-				if( header > top && header < bottom ){
-					switchCircle('#header');
-				}
-
-				if( info > top && info < bottom ){
-					switchCircle('#info');
-					
-				}
-				
-				if( projects > top && projects < bottom){	
-					switchCircle('#projects');
-					// $(".project-item").show("slow");
-					// my projects 字样
-					$("#project-title").animate({'font-size': '1.5em', 'opacity':'1'}, 5000);
-					//  每一个项目整体的样式
-					$(".project-item").css('animation', 'project-animate 10s forwards ');
-					
-
-				}
-				if($(window).scrollTop() > (footer*0.7 ) ){
-					switchCircle('#footer');
-				}
-				// 滚动 滚动条 切换样式
-				function switchCircle(item){
-					$( item +'-span').addClass("onHover");
-					$( item +'-span').parent().siblings('').children('span').removeClass('onHover');
-					$( item +'-li').css('background-color', '#fff');
-					$( item +'-li').siblings('li').css('background-color', '#6C6262');
-				}
-		
-			});
-			
-		
-
-	});
-	</script>
+	<script src="./index.js"></script>
 </body>
 </html>
